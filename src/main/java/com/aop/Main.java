@@ -9,22 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
-// 启用 AOP 自动代理
-@EnableAspectJAutoProxy
-// 指定扫描的包路径
-@ComponentScan("com.aop")
-public class Main {
-    public static void main(String[] args) {
-        // 创建 Spring 容器
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-        // 从容器中获取 TargetService 的代理对象
-        TargetService service = context.getBean(TargetService.class);
-        // 调用方法，观察 AOP 的行为
-        service.doSomething();
-        // 关闭容器
-        context.close();
-    }
-}
 
 // 目标类
 @Component
@@ -50,3 +34,20 @@ class LogAspect {
         System.out.println("==> AOP 后置通知: " + joinPoint.getSignature());
     }
 }
+// 启用 AOP 自动代理
+@EnableAspectJAutoProxy
+// 指定扫描的包路径
+@ComponentScan("com.aop")
+public class Main {
+    public static void main(String[] args) {
+        // 创建 Spring 容器
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
+        // 从容器中获取 TargetService 的代理对象
+        TargetService service = context.getBean(TargetService.class);
+        // 调用方法，观察 AOP 的行为
+        service.doSomething();
+        // 关闭容器
+        context.close();
+    }
+}
+
