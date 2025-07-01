@@ -38,8 +38,6 @@ class Alpha {
 
 @Component
 class Beta {
-    @Autowired
-    private Delta delta;
 
     public Beta() {
         System.out.println("Beta 构造");
